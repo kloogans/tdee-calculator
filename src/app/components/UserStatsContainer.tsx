@@ -9,7 +9,11 @@ const UserStatsContainer = () => {
   const { handleSubmit, formSubmitted, results } = useCalculations();
 
   return (
-    <div className="container mx-auto mt-10 p-6 bg-white text-black shadow-md rounded-2xl">
+    <div
+      className={`container ${
+        formSubmitted ? "max-w-none" : "max-w-3xl"
+      } mx-auto mt-10 p-6 bg-white text-black shadow-md rounded-2xl`}
+    >
       {formSubmitted && results ? (
         // @ts-ignore
         <ResultsSection results={results} />

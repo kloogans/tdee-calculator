@@ -61,19 +61,20 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
 
     if (results.unit === "metric") {
       // @ts-ignore
+      const valueFormatted = idealWeightData[key] || 0;
+      // @ts-ignore
       return {
         name,
-        // @ts-ignore
-        value: Math.round(idealWeightData[key] / 2.20462)`${
-          results.unit === "metric" ? "kg" : "lbs"
-        }`,
+        value:
+          // @ts-ignore
+          Math.round(valueFormatted / 2.20462) + "kg",
       };
     }
 
     return {
       name,
       // @ts-ignore
-      value: idealWeightData[key],
+      value: idealWeightData[key] + "lbs",
     };
   });
 
@@ -268,10 +269,8 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
     : "Mifflin-St Jeor";
 
   return (
-    <div className="max-w-5xl w-full mx-auto flex flex-col justify-center items-center mt-10 p-6 bg-white text-black shadow-md rounded-md">
-      <h1 className="text-2xl font-bold mb-6 text-center">
-        Your calories burned every day
-      </h1>
+    <div className="max-w-5xl w-full mx-auto flex flex-col justify-center items-center mt-10 p-6 text-black">
+      <h1 className="text-2xl font-bold mb-6 text-center">Your Results</h1>
       <div className="w-full flex flex-col items-center">
         <StatCard
           primaryText={formatNumber(results.TDEE.active)}
@@ -279,18 +278,21 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
         />
 
         <p className="text-sm text-zinc-700 mb-4">
-          or <strong>{formatNumber(results.TDEE.active * 7)}</strong> calories
-          per week
+          or{" "}
+          <strong className="text-black">
+            {formatNumber(results.TDEE.active * 7)}
+          </strong>{" "}
+          calories per week
         </p>
       </div>
 
       <div className="h-1 w-full bg-zinc-100 my-6 rounded-full" />
 
       <div className="w-full flex flex-col gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start w-full h-full mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start w-full h-full">
           <div>
-            <h2 className="text-lg font-semibold mb-2">TDEE</h2>
-            <p className="text-sm text-zinc-700">
+            <h2 className="text-lg font-semibold mb-1">TDEE</h2>
+            <p className="text-sm text-zinc-700 mb-2">
               Your Total Daily Energy Expenditure (TDEE) is the number of
               calories you burn every day. It is the sum of your Basal Metabolic
               Rate (BMR) and the calories you burn through physical activity.
@@ -309,10 +311,10 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
             </Card>
           </div>
           <div>
-            <h2 className="text-lg font-semibold mb-2">
+            <h2 className="text-lg font-semibold mb-1">
               BMI: <strong>{results.BMI}</strong>
             </h2>
-            <p>
+            <p className="text-sm text-zinc-700 mb-2 md:mb-12">
               With a BMI of {results.BMI}, you are classified as{" "}
               <strong>
                 {results.BMI >= 30
@@ -327,7 +329,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
               so it is not a perfect measure of health, especially if you lift
               weights.
             </p>
-            <Card className="!p-0 overflow-hidden h-full">
+            <Card className="!p-0 overflow-hidden h-full flex-1">
               <TableHero data={BMIData} />
             </Card>
             {/* <p className="mt-2">
@@ -345,7 +347,8 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
           </p> */}
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start w-full h-full mb-12">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start w-full h-full">
           <div className="w-full">
             <h2 className="text-lg font-semibold mb-1">
               Ideal Weight: {results.recommendedWeight.lowestWeight}-

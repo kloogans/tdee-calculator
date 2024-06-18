@@ -50,7 +50,7 @@ export function Tabs({ data }: TabsProps) {
                     key={index}
                     className="flex flex-col items-center text-lg rounded-2xl bg-indigo-600 shadow-md text-white h-full flex-1 py-4"
                   >
-                    <span className="text-sm border-b-2 pb-1 border-b-white mb-2">
+                    <span className="text-sm border-b-2 pb-1 border-b-white mb-4">
                       {listItem.name}
                     </span>
                     <ul className="flex gap-2 flex-col items-center md:items-between h-full">
