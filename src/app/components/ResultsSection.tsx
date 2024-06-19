@@ -12,6 +12,7 @@ interface ResultsPageProps {
 }
 
 const ResultsSection = ({ results }: ResultsPageProps) => {
+  const unit = results.unit === "metric" ? "kg" : "lbs";
   const barListData = results.TDEE;
   const BMIData = [
     {
@@ -59,24 +60,26 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
     if (key === "robinson") name = "J.D. Robinson Formula (1983)";
     if (key === "miller") name = "D.R. Miller Formula (1983)";
 
-    if (results.unit === "metric") {
-      // @ts-ignore
-      const valueFormatted = idealWeightData[key] || 0;
-      // @ts-ignore
-      return {
-        name,
-        value:
-          // @ts-ignore
-          Math.round(valueFormatted / 2.20462) + "kg",
-      };
-    }
+    // if (results.unit === "metric") {
+    //   // @ts-ignore
+    //   const valueFormatted = idealWeightData[key] || 0;
+    //   // @ts-ignore
+    //   return {
+    //     name,
+    //     value:
+    //       // @ts-ignore
+    //       Math.round(valueFormatted / 2.20462) + "kg",
+    //   };
+    // }
 
     return {
       name,
       // @ts-ignore
-      value: idealWeightData[key] + "lbs",
+      value: idealWeightData[key] + unit,
     };
   });
+
+  console.log(formattedIdealWeightData);
 
   const muscularPotentialBarChartData = [
     {
@@ -286,6 +289,14 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
         </p>
       </div>
 
+      {!results.bodyfat && (
+        <p className="p-4 rounded-2xl bg-zinc-200 text-xs max-w-sm text-zinc-700">
+          You didn't include your body fat percentage, so we used a different
+          formula to calculate your TDEE. This formula is less accurate than the
+          Katch-McArdle formula, which requires your body fat percentage.
+        </p>
+      )}
+
       <div className="h-1 w-full bg-zinc-100 my-6 rounded-full" />
 
       <div className="w-full flex flex-col gap-4">
@@ -420,8 +431,12 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
         </div>
       </div>
 
-      <div className="mb-6 w-full">
-        <h2 className="text-lg font-semibold mb-2">Macronutrients</h2>
+      <div className="mb-6 w-full mt-4">
+        <h2 className="text-lg font-semibold mb-1">Macronutrients</h2>
+        <p className="text-sm text-zinc-700 mb-2">
+          Based on your goals, here are the suggested macronutrient
+          distributions you should aim for:
+        </p>
         <Tabs data={macroNutritionData} />
         <p className="text-xs text-zinc-700 w-full text-center mt-4">
           Protein and carbohydrates each contain 4 calories per gram and fat

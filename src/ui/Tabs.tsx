@@ -7,6 +7,12 @@ import {
   TabPanels,
 } from "@tremor/react";
 
+const MACRO_DISTRIBUTIONS = {
+  "Low Carb": "40/40/20",
+  "Moderate Carb": "30/35/35",
+  "High Carb": "30/20/50",
+};
+
 interface ListItemListItemProps {
   name: string; // protein, fat, carb
   value: string;
@@ -50,8 +56,12 @@ export function Tabs({ data }: TabsProps) {
                     key={index}
                     className="flex flex-col items-center text-lg rounded-2xl bg-indigo-600 shadow-md text-white h-full flex-1 py-4"
                   >
-                    <span className="text-sm border-b-2 pb-1 border-b-white mb-4">
+                    <span className="flex flex-col items-center text-sm border-b-2 pb-1 border-b-white mb-4">
                       {listItem.name}
+                      <span className="text-xs">
+                        {/* @ts-ignore */}
+                        {MACRO_DISTRIBUTIONS[listItem.name]}
+                      </span>
                     </span>
                     <ul className="flex gap-2 flex-col items-center md:items-between h-full">
                       {listItem.list.map((item, index) => (

@@ -1,12 +1,12 @@
 import Image from "next/image";
 import UserStatsContainer from "./components/UserStatsContainer";
+import { CalculatorIcon } from "@/ui/CalculatorIcon";
+import { NavBar } from "./components/NavBar";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-4 bg-indigo-600">
-      <div className="min-h-screen container w-full flex items-center justify-center">
-        <UserStatsContainer />
-      </div>
+    <main className="container w-full h-full min-h-screen flex-1 flex flex-col items-center justify-center z-10">
+      <UserStatsContainer />
     </main>
   );
 }

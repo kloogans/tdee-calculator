@@ -10,9 +10,6 @@ export const UserInfoIngest = ({ handleSubmit }: UserInfoIngestProps) => {
   const { unit, setUnit } = useCalculations();
   return (
     <>
-      <h1 className="text-2xl font-bold mb-6 text-center">
-        Learn How Many Calories You Burn Every Day
-      </h1>
       <form onSubmit={handleSubmit}>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-2">
           <div className="mb-4">
@@ -165,7 +162,7 @@ export const UserInfoIngest = ({ handleSubmit }: UserInfoIngestProps) => {
 
         <button
           type="submit"
-          className="mt-4 w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+          className="mt-4 w-full px-4 py-2 bg-yellow-300 shadow-md text-black rounded-xl border-2 border-black hover:bg-yellow-400 transition"
         >
           Calculate!
         </button>
