@@ -40,7 +40,7 @@ export function Tabs({ data }: TabsProps) {
           className="flex items-center justify-center gap-2 !bg-transparent"
           variant="solid"
           defaultValue={1}
-          color="indigo-600"
+          color="blue-600"
         >
           {data.map((item, index) => (
             <Tab key={index}>{item.name}</Tab>
@@ -54,7 +54,7 @@ export function Tabs({ data }: TabsProps) {
                 {item.list.map((listItem, index) => (
                   <li
                     key={index}
-                    className="flex flex-col items-center text-lg rounded-2xl bg-indigo-600 shadow-md text-white h-full flex-1 py-4"
+                    className="flex flex-col items-center text-lg rounded-2xl bg-blue-600 shadow-md text-white h-full flex-1 py-4"
                   >
                     <span className="flex flex-col items-center text-sm border-b-2 pb-1 border-b-white mb-4">
                       {listItem.name}
@@ -72,7 +72,7 @@ export function Tabs({ data }: TabsProps) {
                           <span className="text-sm text-center md:text-left w-full">
                             {item.name}
                           </span>
-                          <strong className="p-2 bg-indigo-500 rounded-2xl">
+                          <strong className="p-2 bg-blue-500 rounded-2xl">
                             {item.value}
                           </strong>
                         </li>

@@ -46,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="relative min-h-screen flex flex-col items-center justify-between md:px-2 bg-gradient-to-b from-indigo-600 to-indigo-500 overflow-x-hidden">
+        <div className="relative min-h-screen flex flex-col items-center justify-between md:px-2 bg-gradient-to-b from-blue-600 to-blue-500 overflow-x-hidden">
           <NavBar />
           {children}
           <Footer />

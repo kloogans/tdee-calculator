@@ -7,7 +7,7 @@ interface StatCardProps {
 
 export const StatCard = ({ primaryText, secondaryText }: StatCardProps) => {
   return (
-    <div className="relative flex items-center justify-center gap-4 rounded-2xl border-4 border-black p-6 w-full bg-indigo-600 shadow-md max-w-sm mb-4">
+    <div className="relative flex items-center justify-center gap-4 rounded-2xl border-4 border-black p-6 w-full bg-blue-600 shadow-md max-w-sm mb-4">
       <span className="block absolute left-6 text-2xl">🔥</span>
 
       <div>

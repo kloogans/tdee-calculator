@@ -395,7 +395,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
                 data={muscularPotentialBarChartData}
                 index="name"
                 categories={["Muscle Weight"]}
-                colors={["indigo-600"]}
+                colors={["blue-600"]}
                 valueFormatter={(value: number) =>
                   `${value}${results.unit === "metric" ? "kg" : "lbs"}`
                 }

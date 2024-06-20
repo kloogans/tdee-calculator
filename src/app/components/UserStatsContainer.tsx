@@ -78,7 +78,7 @@ const UserStatsContainer = () => {
                 category="value"
                 index="name"
                 // valueFormatter={valueFormatter}
-                colors={["blue", "indigo", "fuchsia"]}
+                colors={["blue", "yellow", "fuchsia"]}
                 className="w-40 text-white"
                 showLabel={false}
               />
@@ -88,7 +88,7 @@ const UserStatsContainer = () => {
                   "Activity Level",
                   "Thermic Effect of Food",
                 ]}
-                colors={["blue", "indigo", "fuchsia"]}
+                colors={["blue", "yellow", "fuchsia"]}
                 className="max-w-xs !text-white"
               />
             </div>
