@@ -7,10 +7,35 @@ import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
+const seo = {
   title: "What's My TDEE? | Calculate Your Total Daily Energy Expenditure",
   description:
     "Discover your Total Daily Energy Expenditure (TDEE) with our advanced calculator. Calculate your TDEE, ideal weight, and more with What's My TDEE?",
+  url: "https://whatsmytdee.com",
+  image: "https://bulkbuddy.s3.amazonaws.com/WMTDEE-seo-image.jpg",
+};
+
+export const metadata: Metadata = {
+  title: "What's My TDEE? | Calculate Your Total Daily Energy Expenditure",
+
+  openGraph: {
+    title: seo.title,
+    description: seo.description,
+    siteName: seo.title,
+    url: seo.url,
+    locale: "en_US",
+    images: seo.image,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: seo.title,
+    description: seo.description,
+    creator: "@kloogans",
+    images: [seo.image],
+  },
+  metadataBase: new URL(seo.url),
+  robots: "follow, index",
 };
 
 export default function RootLayout({
