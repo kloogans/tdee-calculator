@@ -265,7 +265,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
       <h1 className="text-2xl font-bold mb-6 text-center">Your Results</h1>
       <div className="w-full flex flex-col items-center">
         <StatCard
-          primaryText={formatNumber(results.TDEE.active)}
+          primaryText={formatNumber(results.TDEE[results.activityLevel])}
           secondaryText="calories per day"
         />
 
