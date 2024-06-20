@@ -289,7 +289,7 @@ export default function useCalculations() {
     setFormSubmitted(false);
 
     // scroll to top
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
   };
 
   return {
