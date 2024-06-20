@@ -51,7 +51,12 @@ export const UserInfoIngest = ({ handleSubmit }: UserInfoIngestProps) => {
                 <span className="ml-2">Male</span>
               </label>
               <label className="inline-flex items-center">
-                <input type="radio" name="sex" className="form-radio" />
+                <input
+                  type="radio"
+                  name="sex"
+                  value="female"
+                  className="form-radio"
+                />
                 <span className="ml-2">Female</span>
               </label>
             </div>
