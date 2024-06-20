@@ -77,7 +77,7 @@ const UserStatsContainer = () => {
                 data={pieData}
                 category="value"
                 index="name"
-                // valueFormatter={valueFormatter}
+                valueFormatter={(value) => `${value}%`}
                 colors={["blue", "yellow", "fuchsia"]}
                 className="w-40 text-white"
                 showLabel={false}
