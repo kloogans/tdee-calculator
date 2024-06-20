@@ -3,6 +3,8 @@ import { UserInfoIngest } from "./UserInfoIngest";
 import useCalculations from "../hooks/useCalculations";
 import ResultsSection from "./ResultsSection";
 import { DonutChart, Legend } from "@tremor/react";
+import { Toaster } from "react-hot-toast";
+import { IconRefresh } from "@tabler/icons-react";
 
 const UserStatsContainer = () => {
   const { handleSubmit, formSubmitted, results, handleReset } =
@@ -58,10 +60,11 @@ const UserStatsContainer = () => {
         </div>
         {formSubmitted && (
           <button
-            className="p-4 border-2 w-full max-w-sm border-black bg-yellow-300 text-black rounded-2xl hover:bg-yellow-400 transition my-4"
+            className="relative group p-4 border-2 w-full max-w-sm border-black bg-yellow-300 text-black rounded-2xl hover:bg-yellow-400 transition my-4"
             onClick={handleReset}
           >
-            Calculate Again
+            <IconRefresh className="absolute left-2 group-hover:rotate-90 group-focus:rotate-90 transition origin-center" />
+            <strong>Recalculate</strong>
           </button>
         )}
       </div>
@@ -107,6 +110,7 @@ const UserStatsContainer = () => {
               burn through daily activities and exercise.
             </p>
           </div>
+          <Toaster />
         </div>
       )}
     </>

@@ -5,6 +5,7 @@ import { calculateMaxMuscularPotential } from "@/utils/calculateMaximumMuscularP
 import { calculateMacronutrients } from "@/utils/calculateRecommendedMacronutrients";
 import { calculateTDEE } from "@/utils/calculateTDEE";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const MACRO_NUTRIENT_DISTRIBUTION = {
   lowCarb: {
@@ -165,6 +166,31 @@ export default function useCalculations() {
     return Number(BMI.toFixed(1));
   };
 
+  const handleFormValidation = (data: IncomingFormData) => {
+    const requiredFields = ["age", "weight", "exerciseFrequency", "unit"];
+
+    if (unit === "imperial") {
+      requiredFields.push("heightFeet", "heightInches");
+    } else {
+      requiredFields.push("heightCm");
+    }
+
+    // @ts-ignore
+    const missingFields = requiredFields.filter((field) => !data[field]);
+
+    if (missingFields.length) {
+      return {
+        success: false,
+        message: `Please fill in the required fields.`,
+      };
+    } else {
+      return {
+        success: true,
+        message: "",
+      };
+    }
+  };
+
   const handleFormatData = (data: IncomingFormData) => {
     const formattedData = {
       ...data,
@@ -225,6 +251,12 @@ export default function useCalculations() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
+    // @ts-ignore
+    const validation = handleFormValidation(data);
+    if (!validation.success) {
+      toast.error(validation.message);
+      return;
+    }
     // @ts-ignore
     const formattedData = handleFormatData(data);
 

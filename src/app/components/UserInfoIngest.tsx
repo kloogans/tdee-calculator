@@ -1,4 +1,5 @@
 import useCalculations from "../hooks/useCalculations";
+import { IconCalculatorFilled } from "@tabler/icons-react";
 
 interface UserInfoIngestProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -70,6 +71,7 @@ export const UserInfoIngest = ({ handleSubmit }: UserInfoIngestProps) => {
               type="number"
               name="age"
               placeholder="Age"
+              max={116}
               className="mt-1 block w-full px-4 py-2 bg-white border rounded-md"
             />
           </div>
@@ -81,6 +83,8 @@ export const UserInfoIngest = ({ handleSubmit }: UserInfoIngestProps) => {
             <input
               type="number"
               name="weight"
+              max={unit === "imperial" ? 999 : 454}
+              min={unit === "imperial" ? 70 : 31}
               placeholder={unit === "imperial" ? "lbs" : "kg"}
               className="mt-1 block w-full px-4 py-2 bg-white border rounded-md"
             />
@@ -92,20 +96,24 @@ export const UserInfoIngest = ({ handleSubmit }: UserInfoIngestProps) => {
             <label className="block text-zinc-700 mb-2">Height</label>
             {unit === "imperial" ? (
               <div className="flex space-x-4">
-                <div>
+                <div className="w-full">
                   <label className="block text-zinc-700 text-xs">Feet</label>
                   <input
                     type="number"
                     name="heightFeet"
+                    min={2}
+                    max={8}
                     placeholder="Feet"
                     className="mt-1 block w-full px-4 py-2 bg-white border rounded-md"
                   />
                 </div>
-                <div>
+                <div className="w-full">
                   <label className="block text-zinc-700 text-xs">Inches</label>
                   <input
                     type="number"
                     name="heightInches"
+                    min={0}
+                    max={12}
                     placeholder="Inches"
                     className="mt-1 block w-full px-4 py-2 bg-white border rounded-md"
                   />
@@ -119,6 +127,7 @@ export const UserInfoIngest = ({ handleSubmit }: UserInfoIngestProps) => {
                 <input
                   type="number"
                   name="heightCm"
+                  max={271}
                   placeholder="Centimeters"
                   className="mt-1 block w-full px-4 py-2 bg-white border rounded-md"
                 />
@@ -165,9 +174,10 @@ export const UserInfoIngest = ({ handleSubmit }: UserInfoIngestProps) => {
 
         <button
           type="submit"
-          className="mt-4 w-full px-4 py-2 bg-yellow-300 shadow-md text-black rounded-xl border-2 border-black hover:bg-yellow-400 transition"
+          className="relative mt-4 group w-full px-4 py-2 bg-yellow-300 shadow-md text-black rounded-xl border-2 border-black hover:bg-yellow-400 transition"
         >
-          Calculate!
+          <IconCalculatorFilled className="absolute left-2 group-hover:scale-[1.07] group-focus:scale-[1.07] transition origin-center" />
+          <strong>Calculate!</strong>
         </button>
       </form>
     </>

@@ -300,7 +300,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
               <strong>{formatNumber(results.TDEE.active)}</strong> calories per
               day based on the {TDEECalculationModel} formula.
             </p>
-            <Card className="h-full border-2">
+            <Card className="h-full border-2 !border-black">
               <BarList
                 className="capitalize"
                 sortOrder="ascending"
@@ -329,7 +329,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
               so it is not a perfect measure of health, especially if you lift
               weights.
             </p>
-            <Card className="!p-0 overflow-hidden h-full flex-1 border-2">
+            <Card className="!p-0 overflow-hidden h-full flex-1 border-2 !border-black">
               <TableHero data={BMIData} />
             </Card>
             {/* <p className="mt-2">
@@ -369,7 +369,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
               . This range can wildly fluctuate if you lift weights or have
               genetic predispositions.
             </p>
-            <Card className="!p-0 overflow-hidden h-full border-2">
+            <Card className="!p-0 overflow-hidden h-full border-2 !border-black">
               <TableHero data={formattedIdealWeightData} />
             </Card>
           </div>
@@ -389,7 +389,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
               </a>{" "}
               to calculate this.
             </p>
-            <Card className="p-0 overflow-hidden h-full pb-2 border-2">
+            <Card className="p-0 overflow-hidden h-full pb-2 border-2 !border-black">
               <BarChart
                 className="mt-6"
                 data={muscularPotentialBarChartData}
