@@ -272,7 +272,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
         <p className="text-sm text-zinc-700 mb-4">
           or{" "}
           <strong className="text-black">
-            {formatNumber(results.TDEE.active * 7)}
+            {formatNumber(results.TDEE[results.activityLevel] * 7)}
           </strong>{" "}
           calories per week
         </p>
@@ -297,8 +297,10 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
               calories you burn every day. It is the sum of your Basal Metabolic
               Rate (BMR) and the calories you burn through physical activity.
               Your TDEE is estimated to be around{" "}
-              <strong>{formatNumber(results.TDEE.active)}</strong> calories per
-              day based on the {TDEECalculationModel} formula.
+              <strong>
+                {formatNumber(results.TDEE[results.activityLevel])}
+              </strong>{" "}
+              calories per day based on the {TDEECalculationModel} formula.
             </p>
             <Card className="h-full border-2 !border-black">
               <BarList
