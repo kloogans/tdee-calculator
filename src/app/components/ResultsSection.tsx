@@ -6,12 +6,15 @@ import React from "react";
 import { BarChart, BarList, Card, Table } from "@tremor/react";
 import { TableHero } from "@/ui/Table";
 import { Tabs } from "@/ui/Tabs";
+import useCalculations from "../hooks/useCalculations";
 
 interface ResultsPageProps {
   results: Results;
 }
 
 const ResultsSection = ({ results }: ResultsPageProps) => {
+  const { handleReset } = useCalculations();
+
   const unit = results.unit === "metric" ? "kg" : "lbs";
   const barListData = results.TDEE;
   const BMIData = [
@@ -60,26 +63,12 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
     if (key === "robinson") name = "J.D. Robinson Formula (1983)";
     if (key === "miller") name = "D.R. Miller Formula (1983)";
 
-    // if (results.unit === "metric") {
-    //   // @ts-ignore
-    //   const valueFormatted = idealWeightData[key] || 0;
-    //   // @ts-ignore
-    //   return {
-    //     name,
-    //     value:
-    //       // @ts-ignore
-    //       Math.round(valueFormatted / 2.20462) + "kg",
-    //   };
-    // }
-
     return {
       name,
       // @ts-ignore
       value: idealWeightData[key] + unit,
     };
   });
-
-  console.log(formattedIdealWeightData);
 
   const muscularPotentialBarChartData = [
     {
@@ -272,7 +261,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
     : "Mifflin-St Jeor";
 
   return (
-    <div className="max-w-5xl w-full mx-auto flex flex-col justify-center items-center mt-10 p-6 text-black">
+    <div className="max-w-5xl w-full mx-auto flex flex-col justify-center items-center text-black">
       <h1 className="text-2xl font-bold mb-6 text-center">Your Results</h1>
       <div className="w-full flex flex-col items-center">
         <StatCard
@@ -311,12 +300,12 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
               <strong>{formatNumber(results.TDEE.active)}</strong> calories per
               day based on the {TDEECalculationModel} formula.
             </p>
-            <Card className="h-full">
+            <Card className="h-full border-2">
               <BarList
                 className="capitalize"
                 sortOrder="ascending"
                 data={formattedData}
-                color="indigo-600"
+                color="yellow-400"
                 valueFormatter={(value: number) => formatNumber(value)}
               />
             </Card>
@@ -325,7 +314,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
             <h2 className="text-lg font-semibold mb-1">
               BMI: <strong>{results.BMI}</strong>
             </h2>
-            <p className="text-sm text-zinc-700 mb-2 md:mb-12">
+            <p className="text-sm text-zinc-700 mb-2 md:mb-12 xl:mb-7">
               With a BMI of {results.BMI}, you are classified as{" "}
               <strong>
                 {results.BMI >= 30
@@ -340,7 +329,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
               so it is not a perfect measure of health, especially if you lift
               weights.
             </p>
-            <Card className="!p-0 overflow-hidden h-full flex-1">
+            <Card className="!p-0 overflow-hidden h-full flex-1 border-2">
               <TableHero data={BMIData} />
             </Card>
             {/* <p className="mt-2">
@@ -380,7 +369,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
               . This range can wildly fluctuate if you lift weights or have
               genetic predispositions.
             </p>
-            <Card className="!p-0 overflow-hidden h-full">
+            <Card className="!p-0 overflow-hidden h-full border-2">
               <TableHero data={formattedIdealWeightData} />
             </Card>
           </div>
@@ -400,7 +389,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
               </a>{" "}
               to calculate this.
             </p>
-            <Card className="!p-0 overflow-hidden h-full">
+            <Card className="p-0 overflow-hidden h-full pb-2 border-2">
               <BarChart
                 className="mt-6"
                 data={muscularPotentialBarChartData}
@@ -431,7 +420,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
         </div>
       </div>
 
-      <div className="mb-6 w-full mt-4">
+      <div className="w-full mt-4">
         <h2 className="text-lg font-semibold mb-1">Macronutrients</h2>
         <p className="text-sm text-zinc-700 mb-2">
           Based on your goals, here are the suggested macronutrient

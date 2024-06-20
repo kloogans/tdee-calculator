@@ -1,7 +1,4 @@
-import Image from "next/image";
 import UserStatsContainer from "./components/UserStatsContainer";
-import { CalculatorIcon } from "@/ui/CalculatorIcon";
-import { NavBar } from "./components/NavBar";
 
 export default function Home() {
   return (

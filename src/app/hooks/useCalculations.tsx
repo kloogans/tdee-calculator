@@ -248,8 +248,6 @@ export default function useCalculations() {
       bodyfat: formattedData.bodyFatPercentage,
     };
 
-    console.log(results);
-
     setResults(results);
     setFormSubmitted(true);
   };
@@ -257,6 +255,9 @@ export default function useCalculations() {
   const handleReset = () => {
     setResults({});
     setFormSubmitted(false);
+
+    // scroll to top
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return {

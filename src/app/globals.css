@@ -31,3 +31,12 @@ body {
     text-wrap: balance;
   }
 }
+
+.tremor-BarList-bar > div {
+  /* background-opacity: 100% !important; */
+  @apply bg-indigo-600 bg-opacity-100;
+
+  .tremor-BarList-barText {
+    @apply text-white;
+  }
+}

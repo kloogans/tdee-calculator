@@ -34,7 +34,7 @@ interface TabsProps {
 
 export function Tabs({ data }: TabsProps) {
   return (
-    <Card className="mx-auto w-full flex flex-col">
+    <Card className="mx-auto w-full flex flex-col border-2">
       <TabGroup className="h-full flex flex-col">
         <TabList
           className="flex items-center justify-center gap-2 !bg-transparent"

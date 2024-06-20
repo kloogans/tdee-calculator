@@ -5,7 +5,8 @@ import ResultsSection from "./ResultsSection";
 import { DonutChart, Legend } from "@tremor/react";
 
 const UserStatsContainer = () => {
-  const { handleSubmit, formSubmitted, results } = useCalculations();
+  const { handleSubmit, formSubmitted, results, handleReset } =
+    useCalculations();
 
   const pieData = [
     {
@@ -29,7 +30,7 @@ const UserStatsContainer = () => {
         className="container w-full flex flex-col items-center justify-center"
       >
         {!formSubmitted && (
-          <div className="w-full flex flex-col items-center max-w-xl mx-auto">
+          <div className="w-full flex flex-col items-center max-w-xl mx-auto px-2">
             <h1 className="text-2xl font-bold mb-2 text-center border-b-2 border-b-white pb-1">
               Calculate How Many Calories You Burn Daily
             </h1>
@@ -43,8 +44,8 @@ const UserStatsContainer = () => {
         )}
         <div
           className={`w-full ${
-            formSubmitted ? "max-w-none" : "max-w-lg"
-          } mx-auto p-2 md:p-4 bg-white border-4 border-black text-black shadow-md rounded-2xl`}
+            formSubmitted ? "max-w-none" : "md:max-w-lg"
+          } mx-auto p-2 md:p-4 bg-white border-y-4 md:border-4 border-black text-black shadow-md md:rounded-2xl`}
         >
           {formSubmitted && results ? (
             // @ts-ignore
@@ -55,10 +56,18 @@ const UserStatsContainer = () => {
             </>
           )}
         </div>
+        {formSubmitted && (
+          <button
+            className="p-4 border-2 w-full max-w-sm border-black bg-yellow-300 text-black rounded-2xl hover:bg-yellow-400 transition my-4"
+            onClick={handleReset}
+          >
+            Calculate Again
+          </button>
+        )}
       </div>
 
       {!formSubmitted && (
-        <div className="container min-h-screen w-full flex flex-col items-center justify-center">
+        <div className="container min-h-screen w-full flex flex-col items-center justify-center px-2">
           <div className="w-full max-w-lg flex flex-col bg-white rounded-2xl border-4 border-black shadow-md p-4 text-black mb-4">
             <div className="flex items-center justify-center space-x-4">
               <DonutChart

@@ -1,5 +1,3 @@
-import { UserInfo } from "@/types";
-import React from "react";
 import useCalculations from "../hooks/useCalculations";
 
 interface UserInfoIngestProps {

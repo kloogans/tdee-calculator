@@ -4,7 +4,7 @@ import { Footer } from "../components/Footer";
 
 export default function Terms() {
   return (
-    <main className="py-20 w-full max-w-2xl h-full min-h-screen flex-1 flex flex-col items-center justify-center z-10 text-white">
+    <main className="py-20 w-full max-w-2xl h-full min-h-screen flex-1 flex flex-col items-center justify-center z-10 text-white px-2">
       <h1 className="text-2xl font-bold">Terms and Conditions</h1>
       <p className="mb-4">Effective Date: 06/19/2024</p>
 
