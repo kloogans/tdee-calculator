@@ -45,6 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta name="msvalidate.01" content="66D40F4C50CC8D33AF18CF54F32CFEB1" />
       <body className={inter.className}>
         <div className="relative min-h-screen flex flex-col items-center justify-between md:px-2 bg-gradient-to-b from-blue-600 to-blue-500 overflow-x-hidden">
           <NavBar />
