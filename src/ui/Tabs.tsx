@@ -59,8 +59,11 @@ export function Tabs({ data }: TabsProps) {
                     <span className="flex flex-col items-center text-sm border-b-2 pb-1 border-b-white mb-4">
                       {listItem.name}
                       <span className="text-xs">
-                        {/* @ts-ignore */}
-                        {MACRO_DISTRIBUTIONS[listItem.name]}
+                        {
+                          MACRO_DISTRIBUTIONS[
+                            listItem.name as keyof typeof MACRO_DISTRIBUTIONS
+                          ]
+                        }
                       </span>
                     </span>
                     <ul className="flex gap-2 flex-col items-center md:items-between h-full">

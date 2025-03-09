@@ -175,8 +175,9 @@ export default function useCalculations() {
       requiredFields.push("heightCm");
     }
 
-    // @ts-ignore
-    const missingFields = requiredFields.filter((field) => !data[field]);
+    const missingFields = requiredFields.filter(
+      (field) => !data[field as keyof IncomingFormData]
+    );
 
     if (missingFields.length) {
       return {
@@ -250,21 +251,21 @@ export default function useCalculations() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-    // @ts-ignore
+    const data = Object.fromEntries(
+      formData.entries()
+    ) as unknown as IncomingFormData;
     const validation = handleFormValidation(data);
     if (!validation.success) {
       toast.error(validation.message);
+      ``;
       return;
     }
-    // @ts-ignore
     const formattedData = handleFormatData(data);
 
     const TDEE = handleCalculateTDEE(formattedData);
     const recommendedWeight = handleCalculateIdealWeight(formattedData);
     const muscularPotential = handleCalculateMuscularPotential(formattedData);
     const macronutrientsData = handleCalculateMacronutrients(
-      // @ts-ignore
       TDEE[formattedData.exerciseFrequency]
     );
     const BMI = handleCalculateBMI(formattedData);
@@ -288,7 +289,6 @@ export default function useCalculations() {
     setResults({});
     setFormSubmitted(false);
 
-    // scroll to top
     window.scrollTo({ top: 0 });
   };
 

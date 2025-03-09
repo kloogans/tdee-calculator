@@ -1,10 +1,10 @@
 "use client";
-import { UserInfoIngest } from "./UserInfoIngest";
-import useCalculations from "../hooks/useCalculations";
-import ResultsSection from "./ResultsSection";
 import { DonutChart, Legend } from "@tremor/react";
 import { Toaster } from "react-hot-toast";
 import { IconRefresh } from "@tabler/icons-react";
+import { UserInfoIngest } from "./UserInfoIngest";
+import useCalculations from "../hooks/useCalculations";
+import ResultsSection from "./ResultsSection";
 
 const UserStatsContainer = () => {
   const { handleSubmit, formSubmitted, results, handleReset } =

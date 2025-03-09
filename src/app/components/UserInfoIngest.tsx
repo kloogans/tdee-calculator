@@ -1,5 +1,5 @@
-import useCalculations from "../hooks/useCalculations";
 import { IconCalculatorFilled } from "@tabler/icons-react";
+import useCalculations from "../hooks/useCalculations";
 
 interface UserInfoIngestProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;

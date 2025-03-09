@@ -1,20 +1,16 @@
 "use client";
+import { BarChart, BarList, Card } from "@tremor/react";
 import { Results } from "@/types";
 import { StatCard } from "@/ui/StatCard";
 import { formatNumber } from "@/utils/formatNumber";
-import React from "react";
-import { BarChart, BarList, Card, Table } from "@tremor/react";
 import { TableHero } from "@/ui/Table";
 import { Tabs } from "@/ui/Tabs";
-import useCalculations from "../hooks/useCalculations";
 
 interface ResultsPageProps {
   results: Results;
 }
 
 const ResultsSection = ({ results }: ResultsPageProps) => {
-  const { handleReset } = useCalculations();
-
   const unit = results.unit === "metric" ? "kg" : "lbs";
   const barListData = results.TDEE;
   const BMIData = [
@@ -39,7 +35,6 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
   const idealWeightData = results.recommendedWeight;
 
   let formattedData = Object.keys(barListData).map((key) => {
-    // @ts-ignore
     let name = key;
 
     if (key === "veryActive") name = "very active";
@@ -47,8 +42,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
 
     return {
       name,
-      // @ts-ignore
-      value: barListData[key],
+      value: barListData[key as keyof typeof barListData],
     };
   });
 
@@ -65,8 +59,7 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
 
     return {
       name,
-      // @ts-ignore
-      value: idealWeightData[key] + unit,
+      value: idealWeightData[key as keyof typeof idealWeightData] + unit,
     };
   });
 
@@ -334,19 +327,6 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
             <Card className="!p-0 overflow-hidden h-full flex-1 border-2 !border-black">
               <TableHero data={BMIData} />
             </Card>
-            {/* <p className="mt-2">
-            Your BMI is {results.BMI}, which means you are classified as{" "}
-            <strong>
-              {results.BMI >= 30
-                ? "Obese"
-                : results.BMI >= 25
-                ? "Overweight"
-                : results.BMI >= 18.5
-                ? "Normal Weight"
-                : "Underweight"}
-            </strong>
-            .
-          </p> */}
           </div>
         </div>
 
@@ -405,19 +385,6 @@ const ResultsSection = ({ results }: ResultsPageProps) => {
                 yAxisWidth={48}
               />
             </Card>
-            {/* <ul>
-            <li>
-              At 5% Body Fat: {results.muscularPotential.at5PercentBodyFat} lbs
-            </li>
-            <li>
-              At 10% Body Fat: {results.muscularPotential.at10PercentBodyFat}{" "}
-              lbs
-            </li>
-            <li>
-              At 15% Body Fat: {results.muscularPotential.at15PercentBodyFat}{" "}
-              lbs
-            </li>
-          </ul> */}
           </div>
         </div>
       </div>
